@@ -11,7 +11,8 @@
     "types": ["node"],
     "baseUrl": ".",
     "paths": {
-      "@app/*": ["../*"]
+      "@app/*": ["../*"],
+      "@app/services/*": ["../services/*"]
     }
   },
   "include": ["src/**/*.ts", "../../types/**/*.d.ts"],

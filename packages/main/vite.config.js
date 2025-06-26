@@ -14,7 +14,7 @@ export default /**
     assetsDir: '.',
     target: `node${getNodeMajorVersion()}`,
     lib: {
-      entry: 'src/index.ts',
+      entry: ['src/index.ts'],
       formats: ['es'],
     },
     rollupOptions: {

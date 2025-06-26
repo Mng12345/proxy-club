@@ -1,5 +1,6 @@
 import {build, createServer} from 'vite';
 import path from 'path';
+import { exec } from 'child_process';
 
 /**
  * This script is designed to run multiple packages of your application in a special development mode.
@@ -53,6 +54,8 @@ const rendererWatchServerProvider = {
 /** @type {string[]} */
 const packagesToStart = [
   'packages/preload',
+  'packages/shared',
+  'packages/services',
   'packages/main',
 ];
 
@@ -65,3 +68,24 @@ for (const pkg of packagesToStart) {
     ],
   });
 }
+
+/**
+ * 执行tsc build --watch 命令，监听文件的变化，并自动编译
+ */
+// function buildServicePkg() {
+//   const pkg = path.resolve('packages/services');
+//   const cmd = `cd ${pkg} && npx tsc --watch`
+//   console.log(`build services: ${cmd}`)
+//   exec(cmd, (err, stdout, stderr) => {
+//     if (err) {
+//       console.log(`build services error: `, err)
+//       return
+//     }
+//     if (stdout) {
+//       console.log(`build services stdout: `, stdout)
+//     }
+//     if (stderr) {
+//       console.log(`build services stderr: `, stderr)
+//     }
+//   })
+// }

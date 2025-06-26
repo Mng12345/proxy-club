@@ -1,0 +1,16 @@
+{
+  "name": "@app/services",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/api/index.ts",
+      "default": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

@@ -1,20 +1,20 @@
 {
   "name": "root",
-  "description": "Secure boilerplate for Electron app based on Vite",
-  "version": "3.1.0",
+  "description": "proxy util set",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "author": {
-    "email": "kozackunisoft@gmail.com",
-    "name": "Alex Kozack",
-    "url": "https://kozack.me"
+    "email": "",
+    "name": "ming",
+    "url": ""
   },
   "main": "packages/entry-point.mjs",
   "workspaces": [
     "packages/*"
   ],
   "engines": {
-    "node": ">=23.0.0"
+    "node": ">=20.15.1"
   },
   "scripts": {
     "build": "npm run build -ws --if-present",
@@ -36,6 +36,7 @@
     "playwright": "^1.53.1"
   },
   "dependencies": {
-    "@app/main": "*"
+    "@app/main": "*",
+    "mng-base": "^1.2.1"
   }
 }
