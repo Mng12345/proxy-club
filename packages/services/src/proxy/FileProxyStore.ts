@@ -6,6 +6,7 @@ import { FileUtils } from "../utils/FileUtils.js";
 import * as fsp from 'fs/promises'
 import { GitProxy } from "./GitProxy.js";
 import type { IBackendProxy } from "./IBackendProxy.js";
+import { FontendProxy } from "./FontendProxy.js";
 
 export class FileProxyStore implements IProxyStore {
 
@@ -62,11 +63,24 @@ export class FileProxyStore implements IProxyStore {
 
   async listProxies(): Promise<IBackendProxy[]> {
     await this.load()
-    if (!this.proxies.find(proxy => proxy.name === 'git')) {
+    const nameSet = new Set(this.proxies.map(proxy => proxy.name))
+    if (!nameSet.has('git')) {
       const gitProxy = new GitProxy(undefined)
       this.proxies.push(gitProxy)
-      await this.store()
     }
+    if (!nameSet.has('npm')) {
+      const npmProxy = new FontendProxy('npm', 'https://registry.npmmirror.com')
+      this.proxies.push(npmProxy)
+    }
+    if (!nameSet.has('yarn')) {
+      const yarnProxy = new FontendProxy('yarn', 'https://registry.npmmirror.com')
+      this.proxies.push(yarnProxy)
+    }
+    if (!nameSet.has('pnpm')) {
+      const pnpmProxy = new FontendProxy('pnpm', 'https://registry.npmmirror.com')
+      this.proxies.push(pnpmProxy)
+    }
+    await this.store()
     return this.proxies
   }
 
