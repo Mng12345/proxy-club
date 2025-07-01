@@ -3,6 +3,7 @@ import { ModuleResult, type Result } from "mng-base/dist/result.js";
 import type { IBackendServerProxy } from "./IBackendServerProxy.js";
 import { fork } from "child_process";
 import path from "path";
+import { fileURLToPath } from "url";
 
 export class SimpleBackendServerProxy implements IBackendServerProxy {
   uid: string;
@@ -24,7 +25,7 @@ export class SimpleBackendServerProxy implements IBackendServerProxy {
   private lastError: string | undefined;
 
   private startChildProcess() {
-    const childScriptPath = './packages/worker.mjs'
+    const childScriptPath = fileURLToPath(import.meta.resolve('@app/services/worker.mjs'))
     this.childProcess = fork(childScriptPath, [this.port.toString()], {
       stdio: ["inherit", "inherit", "inherit", "ipc"],
     });

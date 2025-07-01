@@ -37,10 +37,13 @@ export default defineComponent(() => {
   };
 
   const delLoading = ref(false);
+  const activeProxyId = ref<string | undefined>();
   const delProxy = async (uid: string) => {
+    activeProxyId.value = uid;
     delLoading.value = true;
     try {
       await api.delServerProxy(uid);
+      ElMessage.success("删除成功");
       await getProxies();
     } finally {
       delLoading.value = false;
@@ -282,7 +285,7 @@ export default defineComponent(() => {
                 <ElButton type="text" onClick={() => clickEdit(row)}>
                   编辑
                 </ElButton>
-                <ElButton type="text" onClick={() => delProxy(row.uid)}>
+                <ElButton type="danger" link loading={delLoading.value && activeProxyId.value === row.uid} onClick={() => delProxy(row.uid)}>
                   删除
                 </ElButton>
               </div>

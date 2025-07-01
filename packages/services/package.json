@@ -5,7 +5,8 @@
     ".": {
       "types": "./src/api/index.ts",
       "default": "./dist/api.mjs"
-    }
+    },
+    "./worker.mjs": "./dist/worker.mjs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
