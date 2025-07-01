@@ -5,11 +5,7 @@
   "exports": {
     ".": {
       "types": "./src/index.ts",
-      "default": "./dist/index.js"
-    },
-    "./IProxy": {
-      "types": "./src/IProxy.ts",
-      "default": "./dist/IProxy.js"
+      "default": "./dist/index.mjs"
     }
   },
   "scripts": {

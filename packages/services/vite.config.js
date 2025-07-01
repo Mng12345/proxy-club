@@ -1,5 +1,8 @@
 import {resolveModuleExportNames} from 'mlly';
 import {getChromeMajorVersion} from '@app/electron-versions';
+import {copyFile} from 'fs/promises';
+import {join} from 'path';
+import {fileURLToPath} from 'url';
 
 export default /**
  * @type {import('vite').UserConfig}
@@ -13,21 +16,49 @@ export default /**
     target: `chrome${getChromeMajorVersion()}`,
     assetsDir: '.',
     lib: {
-      entry: ['src/api/index.ts'],
+      entry: {
+        api: 'src/api/index.ts',
+        worker: 'src/proxy/SimpleBackendServerWorker.ts'
+      },
     },
     rollupOptions: {
       output: [
         {
           // ESM preload scripts must have the .mjs extension
-          // https://www.electronjs.org/docs/latest/tutorial/esm#esm-preload-scripts-must-have-the-mjs-extension
           entryFileNames: '[name].mjs',
+          format: 'es',
         },
+        {
+          // Worker script needs to be CommonJS
+          entryFileNames: 'SimpleBackendServerWorker.js',
+          format: 'cjs',
+          exports: 'named',
+          chunkFileNames: '[name].js',
+          assetFileNames: '[name].[ext]'
+        }
       ],
     },
     emptyOutDir: true,
     reportCompressedSize: false,
   },
-  plugins: [handleHotReload()],
+  plugins: [
+    {
+      name: 'copy-worker-file',
+      async writeBundle() {
+        try {
+          const __dirname = fileURLToPath(new URL('.', import.meta.url));
+          const srcPath = join(__dirname, 'dist/worker.mjs');
+          const destPath = join(__dirname, '../worker.mjs');
+          
+          await copyFile(srcPath, destPath);
+          console.log(`Successfully copied worker.mjs to ${destPath}`);
+        } catch (err) {
+          console.error('Error copying worker.mjs:', err.message);
+        }
+      }
+    },
+    handleHotReload()
+  ],
 });
 
 

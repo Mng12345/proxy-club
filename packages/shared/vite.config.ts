@@ -7,13 +7,16 @@ export default defineConfig({
     outDir: 'dist',
     target: `node${getNodeMajorVersion()}`,
     lib: {
-      entry: ['src/index.ts', 'src/IProxy.ts'],
-      // name: '@app/shared'
+      entry: ['src/index.ts'],
     },
     rollupOptions: {
-      output: {
-        entryFileNames: '[name].js'
-      }
-    }
+      output: [
+        {
+          entryFileNames: '[name].mjs'
+        }
+      ]
+    },
+    emptyOutDir: true,
+    reportCompressedSize: false,
   }
 })

@@ -44,6 +44,12 @@ export class FileProxyStore implements IProxyStore {
           item = new GitProxy(proxy.url)
           break
         }
+        case 'npm':
+        case 'yarn':
+        case 'pnpm': {
+          item = new FontendProxy(proxy.name, proxy.url)
+          break
+        }
         default: {
           console.log(`Unsupported proxy type: ${proxy.name}`)
           break

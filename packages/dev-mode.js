@@ -66,6 +66,7 @@ for (const pkg of packagesToStart) {
     plugins: [
       rendererWatchServerProvider,
     ],
+    logLevel: 'info',
   });
 }
 

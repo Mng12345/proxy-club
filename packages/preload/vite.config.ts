@@ -61,8 +61,10 @@ function mockExposed() {
     },
     async load(id) {
       if (id === resolvedVirtualModuleId) {
+        console.log(`do resolveModuleExportNames`)
         const exportedNames = await resolveModuleExportNames('./src/index.ts', {
           url: import.meta.url,
+          extensions: ['.ts', '.js'],
         });
         return exportedNames.reduce((s, key) => {
           return (
@@ -113,6 +115,7 @@ function handleHotReload() {
         return;
       }
 
+      // @ts-ignore
       rendererWatchServer.ws.send({
         type: 'full-reload',
       });
