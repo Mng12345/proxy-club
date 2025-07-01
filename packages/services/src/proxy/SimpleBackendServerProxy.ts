@@ -1,4 +1,4 @@
-import { IServerProxy } from "@app/shared";
+import { type IServerProxy } from "@app/shared";
 import { ModuleResult, type Result } from "mng-base/dist/result.js";
 import type { IBackendServerProxy } from "./IBackendServerProxy.js";
 import { fork } from "child_process";

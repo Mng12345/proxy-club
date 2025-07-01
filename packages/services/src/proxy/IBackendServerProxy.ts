@@ -1,4 +1,4 @@
-import { IServerProxy } from '@app/shared';
+import { type IServerProxy } from '@app/shared';
 import type { Result } from 'mng-base/dist/result.js';
 
 export interface IBackendServerProxy extends IServerProxy {

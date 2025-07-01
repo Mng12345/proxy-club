@@ -1,4 +1,4 @@
-import { IServerProxy } from '@app/shared';
+import { type IServerProxy } from '@app/shared';
 import type * as api from '@app/services'
 import { ipcRenderer } from 'electron'
 
