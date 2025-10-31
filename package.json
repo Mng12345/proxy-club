@@ -1,7 +1,7 @@
 {
-  "name": "root",
-  "description": "proxy util set",
-  "version": "1.0.2",
+  "name": "dify-plugin-repackage",
+  "description": "repackage dify plugin",
+  "version": "1.0.1",
   "private": true,
   "type": "module",
   "author": {
@@ -20,7 +20,7 @@
     "build": "npm run build -ws --if-present",
     "compile": "npm run build && electron-builder build --config electron-builder.mjs",
     "test": "npx playwright test ./tests/e2e.spec.ts",
-    "start": "node packages/dev-mode.js",
+    "start": "chcp 65001 && node packages/dev-mode.js",
     "typecheck": "npm run typecheck -ws --if-present",
     "create-renderer": "cd packages && npm create vite@latest renderer",
     "integrate-renderer": "npm start --workspace @app/integrate-renderer",
@@ -32,6 +32,8 @@
     "@types/express": "^5.0.3",
     "@types/express-http-proxy": "^1.6.6",
     "@types/node": "24.0.3",
+    "@types/shelljs": "^0.8.17",
+    "@types/unzipper": "^0.10.11",
     "electron": "36.5.0",
     "electron-builder": "26.0.12",
     "glob": "11.0.3",
@@ -41,6 +43,8 @@
     "@app/main": "*",
     "express": "^5.1.0",
     "express-http-proxy": "^2.1.1",
-    "mng-base": "^1.2.1"
+    "mng-base": "^1.2.1",
+    "shelljs": "^0.10.0",
+    "unzipper": "^0.12.3"
   }
 }

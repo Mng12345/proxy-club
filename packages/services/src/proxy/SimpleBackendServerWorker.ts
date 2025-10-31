@@ -6,6 +6,8 @@ const app = express();
 let server: import('http').Server | undefined;
 const proxyRules = new Map<string, IServerProxyRule>();
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 process.on('message', (message: {
   type: string;
   proxyRules?: IServerProxyRule[];

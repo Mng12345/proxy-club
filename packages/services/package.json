@@ -14,5 +14,11 @@
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "shelljs": "^0.10.0"
+  },
+  "devDependencies": {
+    "@types/shelljs": "^0.8.17"
+  }
 }

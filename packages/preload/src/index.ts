@@ -4,6 +4,8 @@ export {sha256sum} from './nodeCrypto.js';
 export {versions} from './versions.js';
 export * from './proxy.ts'
 export * from './server-proxy.ts'
+export * from './re-pkg-dify-plugin.ts'
+export * from './get-file-path.ts'
 
 
 export function send(channel: string, message: string) {

@@ -19,7 +19,7 @@ export default /** @type import('electron-builder').Configuration */
     createStartMenuShortcut: true,
     oneClick: false,
   },
-  productName: 'ProxyClub',
+  productName: 'dify-plugin-repackage',
   /**
    * It is recommended to avoid using non-standard characters such as spaces in artifact names,
    * as they can unpredictably change during deployment, making them impossible to locate and download for update.
@@ -31,6 +31,12 @@ export default /** @type import('electron-builder').Configuration */
     '!node_modules/@app/**',
     ...await getListOfFilesFromEachWorkspace(),
   ],
+  extraResources: [
+    {
+      from: './images',
+      to: 'images'
+    }
+  ]
 });
 
 /**
